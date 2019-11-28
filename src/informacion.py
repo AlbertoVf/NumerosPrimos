@@ -1,6 +1,5 @@
 from src.primos import listaPrimos
 
-p = 0
 
 
 def escribirFichero(archivo, datos):
@@ -10,11 +9,9 @@ def escribirFichero(archivo, datos):
     :param datos: Lista de numeros primos
     :return:
     '''
-    p = 0
     file = open('../Primos/' + archivo, "w")
     for e in datos:
         file.write(str(e) + " ")
-        p += 1
     file.close()
 
 def creacionFichero(i, f):
@@ -28,7 +25,7 @@ def creacionFichero(i, f):
     escribirFichero(archivo, listaPrimos(i, f))
 
 
-def Tiempo(fichero, tiempoInicio, tiempoFin):
+def Tiempo(nInicio,nFin, tiempoInicio, tiempoFin):
     '''
     Crea una linea en un archivo csv con informacion sobre la creacion de numeros primos
     :param fichero: Rango de numeros primos
@@ -38,7 +35,8 @@ def Tiempo(fichero, tiempoInicio, tiempoFin):
     '''
     file = open('../Primos/Informacion.csv', "a+")
     separacion = ";"
-    encabezado = fichero
+    encabezado = str(nInicio)+" a "+str(nFin)
+    p= len(listaPrimos(nInicio, nFin))
     duracion = str(float(tiempoFin - tiempoInicio))
-    file.write("\n" + encabezado + separacion + p + separacion + duracion + separacion)
+    file.write("\n" + encabezado + separacion + str(p) + separacion + duracion + separacion)
     file.close()

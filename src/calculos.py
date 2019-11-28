@@ -2,6 +2,8 @@ import time
 
 from src.informacion import creacionFichero, Tiempo
 
+def tamnno(lista):
+    return lista.size
 
 def calculadora(inicio, final, incremento):
     '''
@@ -17,7 +19,7 @@ def calculadora(inicio, final, incremento):
         print("--\n" + time.strftime("%H.%M.%S", time.localtime()) + " - Inicio de creacion de fichero de " + fichero)
         creacionFichero(inicio, inicio + incremento)
         b = time.time()
-        Tiempo(fichero, a, b)
+        Tiempo(inicio,inicio+incremento, a, b)
         inicio += incremento
 
 
@@ -35,5 +37,5 @@ def calculadoraInfinita(inicio, incremento):
         print("--\n" + time.strftime("%H.%M.%S", time.localtime()) + " - Inicio de creacion de fichero de " + fichero)
         creacionFichero(inicio, inicio + incremento)
         b = time.time()
-        Tiempo(fichero, a, b)
+        Tiempo(inicio,inicio+incremento, a, b)
         inicio += incremento
