@@ -1,7 +1,0 @@
-from primos import *
-
-inicio = 1000 * 1000* 1000
-final = 1100 * 1000 * 1000
-incremento = 1000000
-
-calculadora(inicio,incremento)
