@@ -1,9 +1,5 @@
-import time
+from src.informacion import creacionFichero, obtencionDatos, ImpresionAvance
 
-from src.informacion import creacionFichero, Tiempo
-
-def tamnno(lista):
-    return lista.size
 
 def calculadora(inicio, final, incremento):
     '''
@@ -14,12 +10,10 @@ def calculadora(inicio, final, incremento):
     :return: Fichero .txt con los numeros primos
     '''
     while (inicio < final):
-        a = time.time()
         fichero = str(inicio) + " a " + str(inicio + incremento)
-        print("--\n" + time.strftime("%H.%M.%S", time.localtime()) + " - Inicio de creacion de fichero de " + fichero)
+        ImpresionAvance(fichero)
         creacionFichero(inicio, inicio + incremento)
-        b = time.time()
-        Tiempo(inicio,inicio+incremento, a, b)
+        obtencionDatos(fichero)
         inicio += incremento
 
 
@@ -32,10 +26,8 @@ def calculadoraInfinita(inicio, incremento):
     '''
     inf = 1
     while (inf == 1):
-        a = time.time()
         fichero = str(inicio) + " a " + str(inicio + incremento)
-        print("--\n" + time.strftime("%H.%M.%S", time.localtime()) + " - Inicio de creacion de fichero de " + fichero)
+        ImpresionAvance(fichero)
         creacionFichero(inicio, inicio + incremento)
-        b = time.time()
-        Tiempo(inicio,inicio+incremento, a, b)
+        obtencionDatos(fichero)
         inicio += incremento

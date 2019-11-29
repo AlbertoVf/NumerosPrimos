@@ -1,5 +1,6 @@
-from src.primos import listaPrimos
+import time
 
+from src.primos import listaPrimos
 
 
 def escribirFichero(archivo, datos):
@@ -14,6 +15,7 @@ def escribirFichero(archivo, datos):
         file.write(str(e) + " ")
     file.close()
 
+
 def creacionFichero(i, f):
     '''
     Crea el fichero de numeros primos con el nombre correspondiente al rango de comprobacion
@@ -25,18 +27,31 @@ def creacionFichero(i, f):
     escribirFichero(archivo, listaPrimos(i, f))
 
 
-def Tiempo(nInicio,nFin, tiempoInicio, tiempoFin):
+def obtencionDatos(tituloRango):
     '''
-    Crea una linea en un archivo csv con informacion sobre la creacion de numeros primos
-    :param fichero: Rango de numeros primos
-    :param tiempoInicio: tiempo en el que se inicia la comprobacion
-    :param tiempoFin: tiempo en el que finaliza la escritura en el archivo
+    Agrega a un fichero csv informacion sobre el rango de numeros primos analizado
+    :param tituloRango: rango de numeros primos con el formato <inicio a fin>
     :return:
     '''
     file = open('../Primos/Informacion.csv', "a+")
     separacion = ";"
-    encabezado = str(nInicio)+" a "+str(nFin)
-    p= len(listaPrimos(nInicio, nFin))
-    duracion = str(float(tiempoFin - tiempoInicio))
-    file.write("\n" + encabezado + separacion + str(p) + separacion + duracion + separacion)
+    inicioRango, finRango = tituloRango.split(' a ')
+    print("Inicio de obtencion de datos. Rango de valores: " + tituloRango)
+
+    a = time.time()
+    lista = listaPrimos(int(inicioRango), int(finRango))
+    p = len(lista)
+    b = time.time()
+
+    duracion = str(float(b - a))
+    file.write("\n" + tituloRango + separacion + str(p) + separacion + duracion + separacion)
     file.close()
+
+
+def ImpresionAvance(fichero):
+    '''
+    Imprime en consola informacion sobre el avance de la creacion de ficheros
+    :param fichero: Nombre del fichero
+    :return:
+    '''
+    print("--\n" + time.strftime("%H.%M.%S", time.localtime()) + " - Inicio de creacion de fichero de " + fichero)
