@@ -2,7 +2,7 @@ def esPrimo(n):
     '''
     Comprueba si un numero es primo
     :param n: Numero a comprobar
-    :return:
+    :return: True o False dependiendo de si es primo
     '''
     nPrimos = 0
     for i in range(1, int(n ** (1 / 2) + 1)):
@@ -18,7 +18,7 @@ def listaPrimos(i, f):
     Crea una lista de numeros primos
     :param i: Inicio de la lista, incluido en la comprobacion
     :param f: Fin de lista, excluido de la comprobacion
-    :return:
+    :return: lista con los numeros primos
     '''
     lista = []
     for n in range(i, f):
