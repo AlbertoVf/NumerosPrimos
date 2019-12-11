@@ -1,4 +1,4 @@
-from src.informacion import creacionFichero, obtencionDatos, ImpresionAvance
+from src.informacion import creacionFichero, obtencionDatos, exportarCSV, ImpresionAvance
 
 
 def calculadora(inicio, final, incremento):
@@ -13,7 +13,7 @@ def calculadora(inicio, final, incremento):
         fichero = str(inicio) + " a " + str(inicio + incremento)
         ImpresionAvance(fichero)
         creacionFichero(inicio, inicio + incremento)
-        obtencionDatos(fichero)
+        exportarCSV(obtencionDatos(fichero))
         inicio += incremento
 
 
@@ -29,5 +29,5 @@ def calculadoraInfinita(inicio, incremento):
         fichero = str(inicio) + " a " + str(inicio + incremento)
         ImpresionAvance(fichero)
         creacionFichero(inicio, inicio + incremento)
-        obtencionDatos(fichero)
+        exportarCSV(obtencionDatos(fichero))
         inicio += incremento
