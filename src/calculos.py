@@ -1,4 +1,4 @@
-from src.informacion import creacionFichero, obtencionDatos, exportarCSV, ImpresionAvance
+from src.informacion import creacionFichero, exportarCSV, ImpresionAvance, ficheroCSV
 
 
 def calculadora(inicio, final, incremento):
@@ -12,8 +12,7 @@ def calculadora(inicio, final, incremento):
     while (inicio < final):
         fichero = str(inicio) + " a " + str(inicio + incremento)
         ImpresionAvance(fichero)
-        creacionFichero(inicio, inicio + incremento)
-        exportarCSV(obtencionDatos(fichero))
+        exportarCSV(creacionFichero(fichero))
         inicio += incremento
 
 
@@ -28,6 +27,25 @@ def calculadoraInfinita(inicio, incremento):
     while (inf == 1):
         fichero = str(inicio) + " a " + str(inicio + incremento)
         ImpresionAvance(fichero)
-        creacionFichero(inicio, inicio + incremento)
-        exportarCSV(obtencionDatos(fichero))
+        exportarCSV(creacionFichero(fichero))
+        inicio += incremento
+
+
+def continuarCalculos(final, incremento):
+    '''
+    Calcula los numeros primos a partir del ultimo rango que hay en el fichero
+    :param final:  Ultimo numero que comprueba si es primo
+    :param incremento: Rango de numeros que se introducira en el fichero
+    :return:
+    '''
+    file = open(ficheroCSV)
+    for e in file:
+        cont = e.rstrip().split(';')
+        if cont[1].isdigit():
+            inicio = cont[0].split(' a ')[1]
+    inicio = int(inicio)
+    while (inicio < final):
+        fichero = str(inicio) + " a " + str(inicio + incremento)
+        ImpresionAvance(fichero)
+        exportarCSV(creacionFichero(fichero))
         inicio += incremento

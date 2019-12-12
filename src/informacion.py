@@ -2,8 +2,9 @@ import time
 
 from src.primos import listaPrimos
 
-ficheroCSV = '../Primos/Informacion.csv'
-ficheroJSON = '../Primos/Informacion.json'
+ruta = '../Primos/'
+ficheroCSV = ruta + 'Informacion.csv'
+ficheroJSON = ruta + 'Informacion.json'
 
 
 def escribirPrimos(archivo, datos):
@@ -13,24 +14,13 @@ def escribirPrimos(archivo, datos):
     :param datos: Lista de numeros primos
     :return:
     '''
-    file = open(archivo, "w")
+    file = open(ruta + archivo, "w")
     for e in datos:
         file.write(str(e) + " ")
     file.close()
 
 
-def creacionFichero(i, f):
-    '''
-    Crea el fichero de numeros primos con el nombre correspondiente al rango de comprobacion
-    :param i: Inicio del rango
-    :param f:  Fin del rango
-    :return: Volcado de numeros primos en el fichero
-    '''
-    archivo = "Numeros Primos desde " + str(i) + " a " + str(f) + ".txt"
-    escribirPrimos(archivo, listaPrimos(i, f))
-
-
-def obtencionDatos(tituloRango):
+def creacionFichero(tituloRango):
     '''
     Agrega a un fichero csv informacion sobre el rango de numeros primos analizado
     :param tituloRango: rango de numeros primos con el formato <inicio a fin>
@@ -38,9 +28,11 @@ def obtencionDatos(tituloRango):
     '''
 
     inicioRango, finRango = tituloRango.split(' a ')
+    archivo = "Numeros Primos desde " + str(inicioRango) + " a " + str(finRango) + ".txt"
     a = time.time()
     lista = listaPrimos(int(inicioRango), int(finRango))
     b = time.time()
+    escribirPrimos(archivo, lista)
     duracion = str(float(b - a))
     return {"Rango": tituloRango, "Numero de primos": len(lista), "Duracion": duracion}
 
