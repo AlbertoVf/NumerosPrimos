@@ -1,7 +1,8 @@
-from src.calculos import calculadora
+from src.calculos import continuarCalculos
 
-inicio = 1000 * 1000 * 1000
-final = 1100 * 1000 * 1000
-incremento = 1000000
-
-calculadora(inicio, final, incremento)
+datos = {
+    'inicio': 1023 * 1000 * 1000,
+    'final': 1100 * 1000 * 1000,
+    'incremento': 1000 * 1000
+}
+continuarCalculos(datos['final'], datos['incremento'])
