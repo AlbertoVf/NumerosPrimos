@@ -1,3 +1,4 @@
+import datetime
 import time
 
 from src.primos import listaPrimos
@@ -66,7 +67,7 @@ def resumenDatos():
             duracionS += float(cont[2].replace(',', '.'))
             nFin = cont[0].split(' a ')[1]
 
-    duracionE = str(int(duracionS / 3600)) + " h " + str(int((duracionS / 60) % 60)) + " min " + str(duracionS % 60) + " seg."
+    duracionE = conversorSegundos(duracionS)
     print(
         "Inicio: " + str(nInicio)
         + "\nFin: " + str(nFin)
@@ -85,3 +86,7 @@ def exportarCSV(datos):
     file = open(ficheroCSV, "a+")
     file.write("\n" + datos["Rango"] + ";" + str(datos["Numero de primos"]) + ";" + str(datos["Duracion"].replace('.', ',')))
     file.close()
+
+
+def conversorSegundos(segundos):
+    return str(datetime.timedelta(seconds=segundos))
