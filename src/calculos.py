@@ -10,7 +10,7 @@ def calculadora(inicio, final, incremento):
     :return: Fichero .txt con los numeros primos
     '''
     while (inicio < final):
-        fichero = str(inicio) + " a " + str(inicio + incremento)
+        fichero = str(inicio) + "-" + str(inicio + incremento)
         ImpresionAvance(fichero)
         exportarCSV(creacionFichero(fichero))
         inicio += incremento
@@ -25,7 +25,7 @@ def calculadoraInfinita(inicio, incremento):
     '''
     inf = 1
     while (inf == 1):
-        fichero = str(inicio) + " a " + str(inicio + incremento)
+        fichero = str(inicio) + "-" + str(inicio + incremento)
         ImpresionAvance(fichero)
         exportarCSV(creacionFichero(fichero))
         inicio += incremento
@@ -45,7 +45,7 @@ def continuarCalculos(final, incremento):
             inicio = cont[0].split(' a ')[1]
     inicio = int(inicio)
     while (inicio < final):
-        fichero = str(inicio) + " a " + str(inicio + incremento)
+        fichero = str(inicio) + "-" + str(inicio + incremento)
         ImpresionAvance(fichero)
         exportarCSV(creacionFichero(fichero))
         inicio += incremento

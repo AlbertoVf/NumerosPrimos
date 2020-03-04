@@ -29,7 +29,7 @@ def creacionFichero(tituloRango):
     '''
 
     inicioRango, finRango = tituloRango.split(' a ')
-    archivo = "Numeros-primos-desde-" + str(inicioRango) + "-a-" + str(finRango) + ".txt"
+    archivo = "primos-" + str(inicioRango) + "-" + str(finRango) + ".txt"
     a = time.time()
     lista = listaPrimos(int(inicioRango), int(finRango))
     b = time.time()
