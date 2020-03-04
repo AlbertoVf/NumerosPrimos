@@ -29,7 +29,7 @@ def creacionFichero(tituloRango):
     '''
 
     inicioRango, finRango = tituloRango.split(' a ')
-    archivo = "Numeros Primos desde " + str(inicioRango) + " a " + str(finRango) + ".txt"
+    archivo = "Numeros-primos-desde-" + str(inicioRango) + "-a-" + str(finRango) + ".txt"
     a = time.time()
     lista = listaPrimos(int(inicioRango), int(finRango))
     b = time.time()
@@ -71,7 +71,7 @@ def resumenDatos():
     print(
         "Inicio: " + str(nInicio)
         + "\nFin: " + str(nFin)
-        + "\nNº lineas: " + str(nLineas, )
+        + "\nNº lineas: " + str(nLineas)
         + "\nNumeros Primos: " + str(nPrimos)
         + "\nDuracion: " + str(duracionS) + " seg.\t(" + str(duracionE) + ")"
     )
@@ -90,3 +90,52 @@ def exportarCSV(datos):
 
 def conversorSegundos(segundos):
     return str(datetime.timedelta(seconds=segundos))
+
+
+def creacionFichero_2(tituloRango):
+    '''
+    Agrega a un fichero csv informacion sobre el rango de numeros primos analizado
+    :param tituloRango: rango de numeros primos con el formato <inicio a fin>
+    :return: Array con los datos
+    '''
+
+    inicioRango, finRango = tituloRango.split(' a ')
+    archivo = "Numeros Primos desde " + str(inicioRango) + " a " + str(finRango) + ".txt"
+    a = time.time()
+    lista = listaPrimos(int(inicioRango), int(finRango))
+    b = time.time()
+    escribirPrimos(archivo, lista)
+    duracion = str(float(b - a))
+    return {"Inicio": str(inicioRango), "Fin": str(finRango), "Numero de primos": len(lista), "Duracion": duracion}
+
+
+def exportarCSV_2(datos):
+    file = open(ficheroCSV, "a+")
+    file.write("\n" + str(datos["Inicio"]) + ";" + str(datos["Fin"]) + ";" + str(datos["Numero de primos"]) + ";" + str(datos["Duracion"].replace('.', ',')))
+    file.close()
+
+
+def resumenDatos_2():
+    file = open(ficheroCSV)
+    file.readline()
+    nInicio = file.readline().split(';')[0]
+    nFin = 0
+    duracionS = float(0)
+    nPrimos = 0
+    nLineas = 1
+    for e in file:
+        nLineas += 1
+        cont = e.rstrip().split(';')
+        if cont[0].isdigit():
+            nPrimos += int(cont[2])
+            duracionS += float(cont[3].replace(',', '.'))
+            nFin = cont[1]
+
+    duracionE = conversorSegundos(duracionS)
+    print(
+        "Inicio: " + str(nInicio)
+        + "\nFin: " + str(nFin)
+        + "\nNº lineas: " + str(nLineas)
+        + "\nNumeros Primos: " + str(nPrimos)
+        + "\nDuracion: " + str(duracionS) + " seg.\t(" + str(duracionE) + ")"
+    )
