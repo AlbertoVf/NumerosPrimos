@@ -42,7 +42,7 @@ def continuarCalculos(final, incremento):
     for e in file:
         cont = e.rstrip().split(';')
         if cont[1].isdigit():
-            inicio = cont[0].split(' a ')[1]
+            inicio = cont[0].split('-')[1]
     inicio = int(inicio)
     while (inicio < final):
         fichero = str(inicio) + "-" + str(inicio + incremento)
