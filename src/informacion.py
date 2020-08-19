@@ -8,7 +8,7 @@ ficheroCSV = ruta + 'Informacion.csv'
 ficheroJSON = ruta + 'Informacion.json'
 
 
-def escribirPrimos(archivo, datos):
+def escribirPrimos(archivo, datos) -> None:
     '''
     Agrega los numeros primos localizados al fichero, separandolos por espacios
     :param archivo: Nombre del archivo
@@ -21,7 +21,7 @@ def escribirPrimos(archivo, datos):
     file.close()
 
 
-def creacionFichero(tituloRango):
+def creacionFichero(tituloRango) -> dict:
     '''
     Agrega a un fichero csv informacion sobre el rango de numeros primos analizado
     :param tituloRango: rango de numeros primos con el formato <inicio a fin>
@@ -38,7 +38,7 @@ def creacionFichero(tituloRango):
     return {"Rango": tituloRango, "Numero de primos": len(lista), "Duracion": duracion}
 
 
-def ImpresionAvance(fichero):
+def ImpresionAvance(fichero) -> None:
     '''
     Imprime en consola informacion sobre el avance de la creacion de ficheros
     :param fichero: Nombre del fichero
@@ -47,7 +47,7 @@ def ImpresionAvance(fichero):
     print(time.strftime("%H.%M.%S", time.localtime()) + " - Inicio de creacion de fichero de " + fichero)
 
 
-def resumenDatos():
+def resumenDatos() -> None:
     '''
     Imprime en pantalla informacion sobre el fichero
     :return:
@@ -68,16 +68,10 @@ def resumenDatos():
             nFin = cont[0].split(' a ')[1]
 
     duracionE = conversorSegundos(duracionS)
-    print(
-        "Inicio: " + str(nInicio)
-        + "\nFin: " + str(nFin)
-        + "\nNº lineas: " + str(nLineas)
-        + "\nNumeros Primos: " + str(nPrimos)
-        + "\nDuracion: " + str(duracionS) + " seg.\t(" + str(duracionE) + ")"
-    )
+    print('Inicio: {}\nFin: {}\nNº lineas: {}\nNumeros primos: {}\nDuracion: {} seg.\t ({})'.format(nInicio, nFin, nLineas, nPrimos, duracionS, duracionE))
 
 
-def exportarCSV(datos):
+def exportarCSV(datos) -> None:
     '''
     Agrega una nueva linea a un fichero csv con informacion sobre el rango de primos calculado
     :param datos: Array con los datos que se escribiran en el csv
@@ -88,11 +82,11 @@ def exportarCSV(datos):
     file.close()
 
 
-def conversorSegundos(segundos):
+def conversorSegundos(segundos) -> str:
     return str(datetime.timedelta(seconds=segundos))
 
 
-def creacionFichero_2(tituloRango):
+def creacionFichero_2(tituloRango) -> dict:
     '''
     Agrega a un fichero csv informacion sobre el rango de numeros primos analizado
     :param tituloRango: rango de numeros primos con el formato <inicio a fin>
@@ -109,13 +103,13 @@ def creacionFichero_2(tituloRango):
     return {"Inicio": str(inicioRango), "Fin": str(finRango), "Numero de primos": len(lista), "Duracion": duracion}
 
 
-def exportarCSV_2(datos):
+def exportarCSV_2(datos) -> None:
     file = open(ficheroCSV, "a+")
     file.write("\n" + str(datos["Inicio"]) + ";" + str(datos["Fin"]) + ";" + str(datos["Numero de primos"]) + ";" + str(datos["Duracion"].replace('.', ',')))
     file.close()
 
 
-def resumenDatos_2():
+def resumenDatos_2() -> None:
     file = open(ficheroCSV)
     file.readline()
     nInicio = file.readline().split(';')[0]
@@ -132,10 +126,4 @@ def resumenDatos_2():
             nFin = cont[1]
 
     duracionE = conversorSegundos(duracionS)
-    print(
-        "Inicio: " + str(nInicio)
-        + "\nFin: " + str(nFin)
-        + "\nNº lineas: " + str(nLineas)
-        + "\nNumeros Primos: " + str(nPrimos)
-        + "\nDuracion: " + str(duracionS) + " seg.\t(" + str(duracionE) + ")"
-    )
+    print('Inicio: {}\nFin: {}\nNº lineas: {}\nNumeros primos: {}\nDuracion: {} seg.\t ({})'.format(nInicio, nFin, nLineas, nPrimos, duracionS, duracionE))

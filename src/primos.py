@@ -1,11 +1,14 @@
-def esPrimo(n):
+import math
+
+
+def esPrimo(n) -> bool:
     '''
     Comprueba si un numero es primo
     :param n: Numero a comprobar
     :return: True o False dependiendo de si es primo
     '''
     nPrimos = 0
-    for i in range(1, int(n ** (1 / 2) + 1)):
+    for i in range(1, int(math.sqrt(n) + 1)):
         if n % i == 0:
             nPrimos += 1
             if nPrimos > 1:
@@ -13,7 +16,7 @@ def esPrimo(n):
     return True
 
 
-def listaPrimos(i, f):
+def listaPrimos(i, f) -> list:
     '''
     Crea una lista de numeros primos
     :param i: Inicio de la lista, incluido en la comprobacion

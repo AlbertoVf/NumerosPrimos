@@ -1,7 +1,7 @@
 from src.informacion import creacionFichero, exportarCSV, ImpresionAvance, ficheroCSV
 
 
-def calculadora(inicio, final, incremento):
+def calculadora(inicio, final, incremento) -> None:
     '''
     Crea ficheros .txt con los numeros primos comprendidos entre inicio y final. Cada fichero .txt tendra un rango desde inicio a inicio+incremento
     :param inicio: Numero por el que comienza a buscar los numeros primos
@@ -16,7 +16,7 @@ def calculadora(inicio, final, incremento):
         inicio += incremento
 
 
-def calculadoraInfinita(inicio, incremento):
+def calculadoraInfinita(inicio, incremento) -> None:
     '''
     Crea ficheros infinitos en los que comprueba los numeros primos
     :param inicio: Inicio del rango de comprobacion
@@ -31,7 +31,7 @@ def calculadoraInfinita(inicio, incremento):
         inicio += incremento
 
 
-def continuarCalculos(final, incremento):
+def continuarCalculos(final, incremento) -> None:
     '''
     Calcula los numeros primos a partir del ultimo rango que hay en el fichero
     :param final:  Ultimo numero que comprueba si es primo
