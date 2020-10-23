@@ -29,7 +29,7 @@ def creacionFichero(tituloRango) -> dict:
     '''
 
     inicioRango, finRango = tituloRango.split('-')
-    archivo = "primos-" + str(inicioRango) + "-" + str(finRango) + ".txt"
+    archivo = f"primos-{inicioRango}-{finRango}.txt"
     a = time.time()
     lista = listaPrimos(int(inicioRango), int(finRango))
     b = time.time()
@@ -67,8 +67,7 @@ def resumenDatos() -> None:
             duracionS += float(cont[2].replace(',', '.'))
             nFin = cont[0].split('-')[1]
 
-    duracionE = datetime.timedelta(duracionS)
-    print('Inicio: {}\nFin: {}\nNº lineas: {}\nNumeros primos: {}\nDuracion: {} seg.\t ({})'.format(nInicio, nFin, nLineas, nPrimos, duracionS, duracionE))
+    print(f'Inicio: {nInicio}\nFin: {nFin}\nNº lineas: {nLineas}\nNumeros primos: {nPrimos}\nDuracion: {duracionS} seg.\t ({datetime.timedelta(seconds = duracionS)})')
 
 
 def exportarCSV(datos) -> None:
@@ -78,5 +77,5 @@ def exportarCSV(datos) -> None:
     :return:
     '''
     file = open(ficheroCSV, "a+")
-    file.write("\n" + datos["Rango"] + ";" + str(datos["Numero de primos"]) + ";" + str(datos["Duracion"].replace('.', ',')))
+    file.write(f"\n{datos['Rango']};{datos['Numerodeprimos']};{datos['Duracion']}")
     file.close()
