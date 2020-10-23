@@ -4,11 +4,21 @@ import time
 
 ruta = 'Primos/'
 ficheroCSV = ruta + 'Informacion.csv'
+
+
+def lecturaDatos(linea):
+    with open('control.sh') as f:
+        dato = f.readlines()[linea]
+        dato = dato.split('=')[1]
+    return dato
+
+
 datos = {
-    'inicio': 62 * 100 * 1000 * 1000,
-    'final': 63 * 100 * 1000 * 1000,
-    'incremento': 1000 * 1000
+    'inicio': int(lecturaDatos(1)),
+    'final': int(lecturaDatos(2)),
+    'incremento': int(lecturaDatos(3))
 }
+
 
 def escribirPrimos(archivo, datos) -> None:
     file = open(ruta + archivo, "w")
@@ -48,19 +58,13 @@ def resumenDatos() -> None:
             duracionS += float(cont[2].replace(',', '.'))
             nFin = cont[0].split('-')[1]
 
-    print(f'Inicio: {nInicio}\nFin: {nFin}\nNº lineas: {nLineas}\nNumeros primos: {nPrimos}\nDuracion: {duracionS} seg.\t ({datetime.timedelta(seconds = duracionS)})')
+    print(
+        f'Inicio: {nInicio}\nFin: {nFin}\nNº lineas: {nLineas}\nNumeros primos: {nPrimos}\nDuracion: {duracionS} seg.\t ({datetime.timedelta(seconds=duracionS)})')
 
 
 def exportarCSV(datos) -> None:
     file = open(ficheroCSV, "a+")
     file.write(f"\n{datos['Rango']};{datos['Numerodeprimos']};{datos['Duracion']}")
-    file.close()
-
-
-def escribirPrimos(archivo, datos):
-    file = open(ruta + archivo, "w")
-    for e in datos:
-        file.write(str(e) + " ")
     file.close()
 
 
@@ -82,20 +86,22 @@ def listaPrimos(i, f) -> list:
     return lista
 
 
+def calc(inicio, incremento):
+    fichero = f'{inicio}-{inicio + incremento}'
+    ImpresionAvance(fichero)
+    cf = creacionFichero(fichero)
+    exportarCSV(cf)
+
+
 def calculadora(inicio, final, incremento) -> None:
     while (inicio < final):
-        fichero = str(inicio) + "-" + str(inicio + incremento)
-        ImpresionAvance(fichero)
-        exportarCSV(creacionFichero(fichero))
+        calc(inicio, incremento)
         inicio += incremento
 
 
 def calculadoraInfinita(inicio, incremento) -> None:
-    inf = 1
-    while (inf == 1):
-        fichero = str(inicio) + "-" + str(inicio + incremento)
-        ImpresionAvance(fichero)
-        exportarCSV(creacionFichero(fichero))
+    while (True):
+        calc(inicio, incremento)
         inicio += incremento
 
 
@@ -107,10 +113,8 @@ def continuarCalculos(final, incremento) -> None:
             inicio = cont[0].split('-')[1]
     inicio = int(inicio)
     while (inicio < final):
-        fichero = str(inicio) + "-" + str(inicio + incremento)
-        ImpresionAvance(fichero)
-        exportarCSV(creacionFichero(fichero))
+        calc(inicio, incremento)
         inicio += incremento
 
-resumenDatos();
-# continuarCalculos(datos['final'], datos['incremento'])
+
+continuarCalculos(datos['final'], datos['incremento'])

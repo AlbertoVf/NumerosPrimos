@@ -1,5 +1,10 @@
 from src.informacion import creacionFichero, exportarCSV, ImpresionAvance, ficheroCSV
 
+def calc(inicio, incremento):
+    fichero = f'{inicio}-{inicio + incremento}'
+    ImpresionAvance(fichero)
+    cf = creacionFichero(fichero)
+    exportarCSV(cf)
 
 def calculadora(inicio, final, incremento) -> None:
     '''
@@ -10,9 +15,7 @@ def calculadora(inicio, final, incremento) -> None:
     :return: Fichero .txt con los numeros primos
     '''
     while (inicio < final):
-        fichero = str(inicio) + "-" + str(inicio + incremento)
-        ImpresionAvance(fichero)
-        exportarCSV(creacionFichero(fichero))
+        calc(inicio, incremento)
         inicio += incremento
 
 
@@ -23,11 +26,8 @@ def calculadoraInfinita(inicio, incremento) -> None:
     :param incremento: Limite del rango que se guardara en un mismo archivo
     :return:
     '''
-    inf = 1
-    while (inf == 1):
-        fichero = str(inicio) + "-" + str(inicio + incremento)
-        ImpresionAvance(fichero)
-        exportarCSV(creacionFichero(fichero))
+    while (True):
+        calc(inicio, incremento)
         inicio += incremento
 
 
@@ -45,7 +45,5 @@ def continuarCalculos(final, incremento) -> None:
             inicio = cont[0].split('-')[1]
     inicio = int(inicio)
     while (inicio < final):
-        fichero = str(inicio) + "-" + str(inicio + incremento)
-        ImpresionAvance(fichero)
-        exportarCSV(creacionFichero(fichero))
+        calc(inicio, incremento)
         inicio += incremento
